@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState, useSyncExternalStore } from "react";
 import type { Lang } from "@/data/i18n";
 
 const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
@@ -8,24 +8,38 @@ const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
   setLang: () => {},
 });
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => {
-    if (typeof window === "undefined") return "id";
-    try {
-      const saved = window.localStorage.getItem("dadwish-lang");
-      return saved === "en" ? "en" : "id";
-    } catch {
-      return "id";
-    }
-  });
+function readSavedLang(): Lang {
+  try {
+    return window.localStorage.getItem("dadwish-lang") === "en" ? "en" : "id";
+  } catch {
+    return "id";
+  }
+}
 
-  const setLang = (l: Lang) => {
-    setLangState(l);
+function subscribeLang(onChange: () => void) {
+  window.addEventListener("storage", onChange);
+  return () => window.removeEventListener("storage", onChange);
+}
+
+const getServerLang = (): Lang => "id";
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  // Hydration-safe: server + render pertama client selalu "id".
+  // Preferensi tersimpan dibaca sebagai snapshot setelah hydration (tanpa error).
+  const saved = useSyncExternalStore(subscribeLang, readSavedLang, getServerLang);
+  const [override, setOverride] = useState<Lang | null>(null);
+  const lang = override ?? saved;
+
+  const setLang = useCallback((l: Lang) => {
+    setOverride(l);
     try {
       localStorage.setItem("dadwish-lang", l);
     } catch {}
-    document.documentElement.lang = l === "id" ? "id" : "en";
-  };
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang === "id" ? "id" : "en";
+  }, [lang]);
 
   return <LangCtx.Provider value={{ lang, setLang }}>{children}</LangCtx.Provider>;
 }

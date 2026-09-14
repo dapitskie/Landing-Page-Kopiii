@@ -1,25 +1,9 @@
-export interface MenuItem {
-  name: string;
-  desc: string;
-  price: number;
-  tag: string;
-}
-
 export interface FaqItem {
   qId: string;
   qEn: string;
   aId: string;
   aEn: string;
 }
-
-export const SIGNATURE_MENU: MenuItem[] = [
-  { name: "Es Kopi Susu Dadwish", desc: "House blend + gula aren + susu segar", price: 22000, tag: "Andalan" },
-  { name: "Sea Salt Oat Latte", desc: "Espresso, oat milk, sentuhan sea salt", price: 28000, tag: "Favorit WFC" },
-  { name: "V60 Single Origin", desc: "Pilih Arjuno / Ijen / Gayo / Papua", price: 25000, tag: "Slow Bar" },
-  { name: "Cold Brew Tonic", desc: "Cold brew 18 jam + tonic + jeruk", price: 30000, tag: "Segar" },
-  { name: "Aeropress Signature", desc: "Resep kompetisi, manis & bersih", price: 27000, tag: "Slow Bar" },
-  { name: "Tubruk Garasi", desc: "Tubruk klasik Toraja, porsi jujur", price: 18000, tag: "Nostalgia" },
-];
 
 export const FAQS: FaqItem[] = [
   {

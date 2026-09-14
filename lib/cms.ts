@@ -1,4 +1,4 @@
-import type { FaqItem, MenuItem } from "@/data/products";
+import type { FaqItem } from "@/data/products";
 
 /** Teks dua bahasa untuk seluruh konten. */
 export interface Localized {
@@ -86,7 +86,6 @@ export interface StoryContent {
 export interface SlowBarContent {
   title: Localized;
   menuNote: Localized;
-  menu: MenuItem[];
   amenities: Localized[];
   quote: Localized;
   quoteBy: Localized;
@@ -125,4 +124,4 @@ export interface SiteContent {
   faq: FaqContent;
 }
 
-export type { FaqItem, MenuItem };
+export type { FaqItem };

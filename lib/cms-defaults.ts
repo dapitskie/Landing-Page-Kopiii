@@ -1,4 +1,4 @@
-import { FAQS, SIGNATURE_MENU } from "@/data/products";
+import { FAQS } from "@/data/products";
 import type { SiteContent } from "./cms";
 
 function clone<T>(v: T): T {
@@ -144,13 +144,12 @@ export function defaultContent(): SiteContent {
         id: "Menu lengkap tersedia di kedai · semua memakai beans fresh roast.",
         en: "Full menu available in-store · beans used are all fresh roast.",
       },
-      menu: clone(SIGNATURE_MENU),
       amenities: [
         { id: "Wi-Fi >100 Mbps", en: "Wi-Fi >100 Mbps" },
         { id: "Stopkontak tiap meja", en: "Outlets at every table" },
         { id: "Indoor AC sejuk", en: "Cool AC indoor" },
         { id: "Smoking outdoor rindang", en: "Shaded smoking outdoor" },
-        { id: "Buka s/d 23.00 (Jum–Sab)", en: "Open till 23.00 (Fri–Sat)" },
+        { id: "Buka s/d 22.00 (Sen–Sab)", en: "Open till 22.00 (Mon–Sat)" },
         { id: "Es Kopi Susu 22rb", en: "Es Kopi Susu from 22k" },
       ],
       quote: {

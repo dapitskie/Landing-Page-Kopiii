@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Wifi, Plug, Snowflake, Cigarette, Clock, CupSoda } from "lucide-react";
+import { Wifi, Plug, Snowflake, Cigarette, Clock, CupSoda, FileDown, Coffee } from "lucide-react";
 import { useLang } from "./LanguageProvider";
 import type { SlowBarContent } from "@/lib/cms";
 import { defaultContent } from "@/lib/cms-defaults";
 import { useParallax } from "./motion";
-import { getOpenStatus, rupiah } from "@/lib/format";
+import { getOpenStatus } from "@/lib/format";
 import Reveal from "./Reveal";
 
 const ICONS = [Wifi, Plug, Snowflake, Cigarette, Clock, CupSoda];
@@ -51,30 +51,25 @@ export default function SlowBar({ slowbar = defaultContent().slowbar }: { slowba
         </div>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-          <Reveal>
-            <div className="overflow-hidden rounded-2xl border-[3px] border-[#FBF9F6] bg-white/[0.04] shadow-brutal-amber">
-              {slowbar.menu.map((m, i) => (
-                <div
-                  key={m.name + i}
-                  className={`flex items-center gap-4 px-5 py-4 ${i !== 0 ? "border-t-2 border-[#FBF9F6]/20" : ""}`}
-                >
-                  <div className="min-w-0 flex-1">
-                    <p className="flex flex-wrap items-center gap-2 font-bold">
-                      {m.name}
-                      {m.tag && (
-                        <span className="rounded-md border border-[#e79b2d] bg-[#D97706]/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#e79b2d]">
-                          {m.tag}
-                        </span>
-                      )}
-                    </p>
-                    <p className="truncate text-[13px] text-white/60">{m.desc}</p>
-                  </div>
-                  <p className="shrink-0 rounded-lg border-2 border-[#1A1412] bg-[#D97706] px-2.5 py-1 font-serif text-base font-bold text-white sm:text-lg">
-                    {rupiah(m.price)}
-                  </p>
-                </div>
-              ))}
-              <p className="border-t-2 border-[#FBF9F6]/20 px-5 py-3 text-xs font-semibold text-white/50">{slowbar.menuNote[lang]}</p>
+          <Reveal className="h-full">
+            <div className="flex h-full flex-col items-start justify-center gap-5 rounded-2xl border-[3px] border-[#FBF9F6] bg-white/[0.04] p-6 shadow-brutal-amber sm:p-8">
+              <span className="grid h-12 w-12 place-items-center rounded-xl border-2 border-[#1A1412] bg-[#D97706] text-white">
+                <Coffee className="h-6 w-6" />
+              </span>
+              <div>
+                <h3 className="font-serif text-2xl font-bold leading-tight sm:text-3xl">
+                  {lang === "en" ? "Full menu, one file." : "Menu lengkap, satu file."}
+                </h3>
+                <p className="mt-2 max-w-md text-sm leading-relaxed text-white/65">{slowbar.menuNote[lang]}</p>
+              </div>
+              <a
+                href="/menu.pdf"
+                download
+                className="btn-press inline-flex items-center gap-2 rounded-full border-2 border-[#1A1412] bg-[#D97706] px-6 py-3.5 text-sm font-bold text-white shadow-brutal-cream hover:bg-[#b45309]"
+              >
+                <FileDown className="h-4 w-4" />
+                {lang === "en" ? "Download Menu (PDF)" : "Unduh Menu (PDF)"}
+              </a>
             </div>
           </Reveal>
           <div className="grid content-start gap-3 sm:grid-cols-2">

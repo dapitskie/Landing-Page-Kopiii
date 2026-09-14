@@ -249,44 +249,6 @@
       "id": "Menu lengkap tersedia di kedai · semua memakai beans fresh roast.",
       "en": "Full menu available in-store · beans used are all fresh roast."
     },
-    "menu": [
-      {
-        "name": "Es Kopi Susu Dadwish",
-        "desc": "House blend + gula aren + susu segar",
-        "price": 22000,
-        "tag": "Andalan"
-      },
-      {
-        "name": "Sea Salt Oat Latte",
-        "desc": "Espresso, oat milk, sentuhan sea salt",
-        "price": 28000,
-        "tag": "Favorit WFC"
-      },
-      {
-        "name": "V60 Single Origin",
-        "desc": "Pilih Arjuno / Ijen / Gayo / Papua",
-        "price": 25000,
-        "tag": "Slow Bar"
-      },
-      {
-        "name": "Cold Brew Tonic",
-        "desc": "Cold brew 18 jam + tonic + jeruk",
-        "price": 30000,
-        "tag": "Segar"
-      },
-      {
-        "name": "Aeropress Signature",
-        "desc": "Resep kompetisi, manis & bersih",
-        "price": 27000,
-        "tag": "Slow Bar"
-      },
-      {
-        "name": "Tubruk Garasi",
-        "desc": "Tubruk klasik Toraja, porsi jujur",
-        "price": 18000,
-        "tag": "Nostalgia"
-      }
-    ],
     "amenities": [
       {
         "id": "Wi-Fi >100 Mbps",
@@ -305,8 +267,8 @@
         "en": "Shaded smoking outdoor"
       },
       {
-        "id": "Buka s/d 23.00 (Jum–Sab)",
-        "en": "Open till 23.00 (Fri–Sat)"
+        "id": "Buka s/d 22.00 (Sen–Sab)",
+        "en": "Open till 22.00 (Mon–Sat)"
       },
       {
         "id": "Es Kopi Susu 22rb",

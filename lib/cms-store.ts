@@ -6,7 +6,6 @@ import { defaultContent } from "./cms-defaults";
 import type {
   FaqItem,
   Localized,
-  MenuItem,
   SiteContent,
   StatItem,
 } from "./cms";
@@ -17,11 +16,6 @@ const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 
 function str(v: unknown, fallback = ""): string {
   return typeof v === "string" ? v : fallback;
-}
-
-function num(v: unknown, fallback = 0): number {
-  const n = typeof v === "number" ? v : Number(v);
-  return Number.isFinite(n) ? n : fallback;
 }
 
 function loc(v: unknown, fallback: Localized): Localized {
@@ -35,13 +29,6 @@ function loc(v: unknown, fallback: Localized): Localized {
 function locList(v: unknown, fallback: Localized[]): Localized[] {
   if (!Array.isArray(v)) return fallback.map((x) => ({ ...x }));
   return v.map((item, i) => loc(item, fallback[i % fallback.length] ?? { id: "", en: "" }));
-}
-
-function menuItem(m: unknown): MenuItem | null {
-  if (!m || typeof m !== "object") return null;
-  const o = m as Record<string, unknown>;
-  if (!str(o.name)) return null;
-  return { name: str(o.name), desc: str(o.desc), price: Math.max(0, Math.round(num(o.price))), tag: str(o.tag) };
 }
 
 function faqItem(f: unknown): FaqItem | null {
@@ -150,9 +137,6 @@ function sanitizeContent(raw: unknown): SiteContent {
     slowbar: {
       title: loc(slowbar.title, d.slowbar.title),
       menuNote: loc(slowbar.menuNote, d.slowbar.menuNote),
-      menu: Array.isArray(slowbar.menu)
-        ? (slowbar.menu as unknown[]).map(menuItem).filter((m): m is MenuItem => m !== null).slice(0, 20)
-        : d.slowbar.menu,
       amenities: locList(slowbar.amenities, d.slowbar.amenities).slice(0, 12),
       quote: loc(slowbar.quote, d.slowbar.quote),
       quoteBy: loc(slowbar.quoteBy, d.slowbar.quoteBy),

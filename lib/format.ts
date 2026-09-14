@@ -1,7 +1,3 @@
-export function rupiah(n: number) {
-  return `Rp${new Intl.NumberFormat("id-ID").format(n)}`;
-}
-
 /** Hitung status buka berdasarkan jam WIB (UTC+7). */
 export function getOpenStatus(now = new Date()): {
   open: boolean;
